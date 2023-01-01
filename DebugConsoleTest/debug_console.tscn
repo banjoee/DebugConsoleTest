@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://1tyevsfk1vhd"]
+
+[ext_resource type="Script" path="res://debug_console.gd" id="1_jqlr0"]
+[ext_resource type="Script" path="res://commands.gd" id="2_2ha3p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_chv81"]
+
+[node name="Console" type="Control" node_paths=PackedStringArray("input", "output", "input_suggestions", "commands")]
+process_mode = 3
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jqlr0")
+input = NodePath("Input")
+output = NodePath("Output")
+input_suggestions = NodePath("VBoxContainer/VFlowContainer/HFlowContainer")
+commands = NodePath("Commands")
+
+[node name="Commands" type="Node" parent="."]
+script = ExtResource("2_2ha3p")
+
+[node name="Input" type="LineEdit" parent="."]
+offset_left = 18.0
+offset_top = 331.0
+offset_right = 486.0
+offset_bottom = 362.0
+placeholder_text = "Enter a command..."
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Output" type="TextEdit" parent="."]
+clip_contents = true
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 486.0
+offset_bottom = 323.0
+focus_mode = 0
+text = "Debug"
+editable = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 23.0
+offset_top = 23.0
+offset_right = 480.0
+offset_bottom = 317.0
+alignment = 2
+
+[node name="VFlowContainer" type="VFlowContainer" parent="VBoxContainer"]
+offset_top = 271.0
+offset_right = 457.0
+offset_bottom = 294.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer/VFlowContainer"]
+offset_right = 1.0
+offset_bottom = 23.0
+theme_override_constants/v_separation = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VFlowContainer/HFlowContainer"]
+offset_right = 1.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_chv81")
